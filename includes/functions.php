@@ -1,7 +1,17 @@
 <?php
-
 function emptyInputSignup($firstname, $surname, $login, $password, $password2){
-    return false;
+    $empty = false;
+    if(empty($firstname))
+    $empty = true;
+    if(empty($surname))
+    $empty = true;
+    if(empty($login))
+    $empty = true;
+    if(empty($password))
+    $empty = true;
+    if(empty($password2))
+    $empty = true;
+    return $empty;
 }
 
 function invalidLogin($login){
@@ -10,11 +20,33 @@ function invalidLogin($login){
 
 function loginExist($login)
 {
-    return false;
+    require 'dbh.inc.php';
+    $exist = false;
+    $query = mysqli_query($conn, "SELECT login FROM users")
+    or
+    exit();
+    while($arr = mysqli_fetch_array($query, MYSQLI_ASSOC)){
+        foreach($arr as $key => $value){
+            if($value==$login)
+                $exist = true;
+        }
+    }
+    return $exist;
+}
+
+function invalidPassword($password){
+    $RegEx = '/^(?=.*[0-9])(?=.*[A-Z]).{8,20}$/';
+    if(preg_match($RegEx, $password))
+        return false;
+    else 
+        return true;
 }
 
 function passwordMatch($password, $password2){
-    return false;
+    if($password==$password2)
+        return false;
+    else
+        return true;
 }
 
 function createUser($conn, $firstname, $surname, $login, $password){
