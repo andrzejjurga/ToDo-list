@@ -12,9 +12,7 @@ $login = $_POST["login"];
 $password = $_POST["password"];
 $password2 = $_POST["password2"];
 
-echo 1;
 require 'dbh.inc.php';
-echo 2;
 require_once 'functions.php';
 
 if(emptyInputSignup($firstname, $surname, $login, $password, $password2) !== false){
@@ -26,7 +24,7 @@ if(invalidLogin($login) !== false){
     exit();
 }
 
-if(loginExist($login) !== false){
+if(signupLoginExist($login) !== false){
     header("location: ../signup.php?error=loginExist");
     exit();
 }
@@ -41,8 +39,5 @@ if(passwordMatch($password, $password2) !== false){
     exit();
 }
 
-if(loginExist($login) !== false){
-    header("location: ../signup.php?error=logintaken");
-    exit();
-}
+
 createUser($conn, $firstname, $surname, $login, $password);

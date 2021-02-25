@@ -11,6 +11,18 @@
     </form>
 </div>
 
+<?php
+    if(isset($_GET["error"])){
+        if($_GET["error"]=="emptyLoginInput")
+            echo "Uzupełnij wszystkie pola";
+        elseif ($_GET["error"]=="loginMissing")
+            echo "Login nie istnieje";
+        elseif ($_GET["error"]=="none")
+            echo "Rejestracja przebiegła pomyślnie";
+        
+    }
+
+?>
 
 <?php
    include_once 'footer.php';

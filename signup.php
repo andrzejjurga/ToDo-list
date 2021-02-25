@@ -14,7 +14,25 @@
     </form>
 </div>
 
+<?php
+    if(isset($_GET["error"])){
+        if($_GET["error"]=="emptyinput")
+            echo "Uzupełnij wszystkie pola";
+        elseif ($_GET["error"]=="invalidlogin")
+            echo "Login może składać się tylko z liczb i liter";
+        elseif ($_GET["error"]=="loginExist")
+            echo "Login jest już zajęty";
+        elseif ($_GET["error"]=="invalidPassword")
+            echo "Hasło musi mieć między 8 a 20 znaków, posiadać liczbę i dużą litere";  
+        elseif ($_GET["error"]=="passwordMatch")
+            echo "Hasło nie są identyczne";
+        elseif ($_GET["error"]=="none")
+            echo "Rejestracja przebiegła pomyślnie";
+        
+    }
+
+?>
 
 <?php
-   include_once 'footer.php';
+    include_once 'footer.php';
 ?>
