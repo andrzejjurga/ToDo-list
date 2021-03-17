@@ -118,3 +118,5 @@ function loginUser($conn, $login, $password)
         header("location: ../index.php?error=none");
     }
 }
+
+
