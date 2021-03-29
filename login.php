@@ -2,15 +2,13 @@
     include_once 'header.php';
 ?>
 
-<h2>Log in</h2>
-<div class="d-flex justify-content-center">
+<div class="form">
+    <h2>Log in</h2>
     <form action="includes/login.inc.php" method="post">
         <input type="text" name="login" placeholder="Login"><br>
         <input type="password" name="password" placeholder="Password"><br>
-        <button type="submit" name="submit">Log in</button>
+        <button type="submit" name="submit" onclick="">Log in</button>
     </form>
-</div>
-
 <?php
     if(isset($_GET["error"])){
         if($_GET["error"]=="emptyLoginInput")
@@ -23,6 +21,8 @@
     }
 
 ?>
+</div>
+
 
 <?php
    include_once 'footer.php';
