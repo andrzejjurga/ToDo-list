@@ -18,18 +18,22 @@
         or
         exit();
         ?>
-        <div id="task">
+        <div id="taskContainer">
         <?php
         while($arr = mysqli_fetch_array($query, MYSQLI_ASSOC)){
-            echo ' <p class="taskTitle">'.$arr["title"].'</h3>';
+            ?>
+            <div class="task">
+            <?php
+                if($arr["checked"]==0)
+                    echo '<div><input type="checkbox">';
+                else
+                    echo '<div><input type="checkbox" checked>';
+            echo ' <p class="taskTitle">'.$arr["title"].'</h3></div>';
             echo ' <p>'.$arr["info"].'</p>';
+            ?>
             
-            if($arr["checked"]==0)
-                echo '<input type="checkbox">';
-            else
-                echo '<input type="checkbox" checked>';
-
-            echo '<hr>';
+            </div>
+            <?php
             //foreach($arr as $key => $value){
              //   echo $value.'<br>';
            // }

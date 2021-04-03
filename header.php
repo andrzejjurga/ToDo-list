@@ -25,8 +25,3 @@
     }
     ?>
 </nav>
-
-<div>
-    <h1>Welcome back!</h1>
-    <p>Let's do something together</p>
-</div>

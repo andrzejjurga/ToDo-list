@@ -3,21 +3,36 @@
 ?>
 
 <div class="form">
-<h2>Sign up</h2>
-    <form action="includes/signup.inc.php" method="post">
-        <label for="firstname">First name</label>
-        <input type="text" name="firstname" placeholder="Janusz"><br>
-        <label for="surname">Surname</label>
-        <input type="text" name="surname" placeholder="Kowalski"><br>
-        <label for="login">Login</label>
-        <input type="text" name="login" placeholder="yourlogin"><br>
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="strongpassword"><br>
-        <label for="password2">Repeat password</label>
-        <input type="password" name="password2" placeholder="strongpassword"><br>
-        <button type="submit" name="submit">Sign up</button>
-    </form>
 
+
+    <div class="login-box">
+        <h2>Sign up</h2>
+        <form action="includes/signup.inc.php" method="post">
+          <div class="user-box">
+            <input type="text" name="firstname" required="">
+            <label>First name</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="surname" required="">
+            <label>Surname</label>
+          </div>
+          <div class="user-box">
+            <input type="text" name="login" required="">
+            <label>Username</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password" required="">
+            <label>Password</label>
+          </div>
+          <div class="user-box">
+            <input type="password" name="password2" required="">
+            <label>Repeat password</label>
+          </div>
+          <button type="submit" name="sumbit">
+              SIGN UP
+          </button>
+        </form>
+      </div>
 <?php
     if(isset($_GET["error"])){
         if($_GET["error"]=="emptyinput")
