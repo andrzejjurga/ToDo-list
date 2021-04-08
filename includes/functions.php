@@ -115,8 +115,65 @@ function loginUser($conn, $login, $password)
         session_start();
         $_SESSION["ID_user"] = $pwd['ID_user'];
         $_SESSION["user_surname"] = $pwd['surname'];
+        $_SESSION["user_firstname"] = $pwd['firstname'];
         header("location: ../index.php?error=none");
     }
 }
 
+//listFunctions
+function emptyInputList($list_title){
+    if(empty($list_title))
+        return true;
+    else
+        return false;
+}
 
+function listExist($list_title)
+{
+    require 'dbh.inc.php';
+    $exist = false;
+    $query = mysqli_query($conn, "SELECT list_title FROM lists")
+    or
+    exit();
+    while($arr = mysqli_fetch_array($query, MYSQLI_ASSOC)){
+        foreach($arr as $key => $value){
+            if($value==$list_title)
+            $exist = true;
+        }
+    }
+    return $exist;
+}
+
+function addlist($list_title, $ID_user)
+{
+    require 'dbh.inc.php';
+    $sql = "INSERT INTO lists (list_title, ID_user) VALUES(?, ?);";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "si", $list_title, $ID_user);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../index.php?error=none");
+    exit();
+}
+
+function deletelist($ID_list)
+{
+    require 'dbh.inc.php';
+    $sql = "DELETE FROM lists WHERE ID_list = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "i", $ID_list);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../index.php?error=none");
+    exit();
+}

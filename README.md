@@ -12,6 +12,5 @@ The purpose of this project is to create simple ToDo list.
 * HTML
 * CSS
 * JS
-* Bootstrap
 * MySQL
 
