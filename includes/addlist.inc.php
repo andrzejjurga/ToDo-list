@@ -19,12 +19,13 @@ if(emptyInputList($list_title) !== false){
     exit();
 }
 
-if(listExist($list_title) !== false){
+$ID_user = $_SESSION["ID_user"];
+
+if(listExist($list_title, $ID_user) !== false){
     header("location: ../index.php?error=listExist");
     exit();
 }
 
-$ID_user = $_SESSION["ID_user"];
 
 addlist($list_title, $ID_user);
 

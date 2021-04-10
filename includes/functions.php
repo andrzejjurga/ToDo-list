@@ -128,11 +128,11 @@ function emptyInputList($list_title){
         return false;
 }
 
-function listExist($list_title)
+function listExist($list_title, $ID_user)
 {
     require 'dbh.inc.php';
     $exist = false;
-    $query = mysqli_query($conn, "SELECT list_title FROM lists")
+    $query = mysqli_query($conn, "SELECT list_title FROM lists JOIN users ON lists.ID_user=users.ID_user WHERE lists.ID_user=\"$ID_user\"")
     or
     exit();
     while($arr = mysqli_fetch_array($query, MYSQLI_ASSOC)){
@@ -172,6 +172,42 @@ function deletelist($ID_list)
     }
     
     mysqli_stmt_bind_param($stmt, "i", $ID_list);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../index.php?error=none");
+    exit();
+}
+
+//taskFunctions
+
+function addtask($task_title, $task_info, $ID_list)
+{
+     require 'dbh.inc.php';
+     $sql = "INSERT INTO tasks (title, info, ID_list) VALUES(?, ?, ?);";
+     $stmt = mysqli_stmt_init($conn);
+     if(!mysqli_stmt_prepare($stmt, $sql)){
+         header("location: ../index.php?error=stmtfailed");
+         exit();
+     }
+    
+    mysqli_stmt_bind_param($stmt, "ssi", $task_title, $task_info, $ID_list);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_close($stmt);
+    header("location: ../index.php?error=napewno");
+    exit();
+}
+
+function deletetask($ID_task)
+{
+    require 'dbh.inc.php';
+    $sql = "DELETE FROM tasks WHERE task_id = ?";
+    $stmt = mysqli_stmt_init($conn);
+    if(!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: ../index.php?error=stmtfailed");
+        exit();
+    }
+    
+    mysqli_stmt_bind_param($stmt, "i", $ID_task);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../index.php?error=none");

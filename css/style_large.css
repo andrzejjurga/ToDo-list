@@ -8,25 +8,47 @@ body{
     font-family: Helvetica, sans-serif;
     background: linear-gradient(#395892, #243b55);
     color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer{
+  position: fixed;
+  padding: 10px 10px 0px 10px;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  justify-content: space-around;
+}
+footer a{
+  text-decoration: none;
+  color: white;
+  padding: 5px;
 }
 
 nav{
+  width: 100%;
     background: rgba(0,0,0,.5);
-    padding: 10px;
+    padding: 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-right: 20px;
     box-shadow: 0px 15px 25px rgba(0,0,0,.6);
 }
 
-nav p{
+nav a p{
     font-size: 5vh;
     margin: 5px 10px 5px 20px;
     color: white;
 }
-
 nav a{
+  text-decoration: none;
+}
+
+.log{
     text-decoration: none;
     color: white;
     font-size: 3vh;
@@ -37,37 +59,105 @@ nav a{
 
 #main
 {
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.list,
-.lists{
-  width: 80%;
+.list{
+  width: 100%;
   background: rgba(0,0,0,.5);
   box-shadow: 0px 15px 25px rgba(0,0,0,.6);
-  margin: 10px;
-  border-radius: 10px;
+  margin: 30px 10px 0px 10px;
+  border-radius: 10px 10px 0px 0px;
   padding: 10px;
-}
-
-.list{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
 
+.list form{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list2{
+  width: 100%;
+  background: rgba(211, 7, 7, 0.5);
+  margin: 10px 10px 0px 10px;
+  border-radius: 10px 10px 0px 0px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-with-task{
+  background-color: rgb(192, 255, 197);
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.list-container{
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.newtask{
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  border-bottom: 1px solid white;
+  align-items: center;
+}
+
+.newtask h2{
+  font-size: medium;
+  width: 200px;
+}
+
+.newtask form{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tasks{
+  width: 100%;
+  background: rgba(0,0,0,.2);
+  padding: 10px;
+  margin: 0px 10px 0px 10px;
+  border-radius: 0px 0px 10px 10px;
+}
+
 .task
 {
-  width: 60%;
-  background: rgba(0,0,0,.5);
-  box-shadow: 0px 15px 25px rgba(0,0,0,.6);
-  margin: 10px;
-  border-radius: 10px;
-  padding: 10px;
+  width: 100%;
+  margin: 0px;
+  padding: 10px 0px 10px 0px;
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .task h2{
   display: flex;
@@ -75,12 +165,7 @@ nav a{
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0;
-}
-
-.task div input[type="checkbox"]
-{
-
+  padding: 10px;
 }
 
 
@@ -105,12 +190,13 @@ nav a{
   }
   
   .login-box .user-box,
-  .newlist .list-box{
+  .newlist .list-box,
+  .newtask .list-box{
     position: relative;
   }
   
   .login-box .user-box input, 
-  .newlist .list-box input  {
+  .newlist .list-box input{
     width: 100%;
     padding: 10px 0;
     font-size: 16px;
@@ -121,8 +207,39 @@ nav a{
     outline: none;
     background: transparent;
   }
+
+  .newtask .list-box input{
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    margin: 20px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+  }
+
+  .newtask .list-box label {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+  }
+
+  .newtask form .list-box input:focus ~ label{
+    top: 0px;
+    left: 20px;
+    color: #03e9f4;
+    font-size: 12px;
+  }
+
   .login-box .user-box label, 
-  .newlist .list-box label {
+  .newlist .list-box label{
     position: absolute;
     top:0;
     left: 0;
@@ -136,7 +253,7 @@ nav a{
   .login-box .user-box input:focus ~ label,
   .login-box .user-box input:valid ~ label,
   .newlist .list-box input:focus ~ label,
-  .newlist .list-box input:valid ~ label {
+  .newlist .list-box input:valid ~ label{
     top: -20px;
     left: 0;
     color: #03e9f4;
@@ -144,8 +261,9 @@ nav a{
   }
   
   .login-box form button,
-  nav a,
-  .newlist form button {
+  .log,
+  .newlist form button,
+  .newtask form button {
     background: none;
     border: none;
     position: relative;
@@ -160,7 +278,7 @@ nav a{
     letter-spacing: 4px
   }
 
-  .delete{
+  .delete, .done{
     background: none;
     border: none;
     position: relative;
@@ -176,7 +294,9 @@ nav a{
     letter-spacing: 0;
     text-align: center;
   }
-
+  .done{
+    color: #33f403;
+  }
   .delete:hover{
     background: #f40303;
     color: #fff;
@@ -186,14 +306,24 @@ nav a{
                 0 0 50px #f40303,
                 0 0 100px #f40303;
   }
+  .done:hover{
+    background: #33f403;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #33f403,
+                0 0 25px #33f403,
+                0 0 50px #33f403,
+                0 0 100px #33f403;
+  }
 
   .login-box form button{
       margin-top: 40px;
   }
   
 .login-box button:hover,
-nav a:hover,
-.newlist form button:hover{
+.log:hover,
+.newlist form button:hover,
+.newtask form button:hover{
     background: #03e9f4;
     color: #fff;
     border-radius: 5px;
@@ -208,6 +338,15 @@ nav a:hover,
     display: block;
   }
   
+  .newlists-container{
+    width: 100%;
+    background: rgba(0,0,0,.5);
+    box-shadow: 0px 15px 25px rgba(0,0,0,.6);
+    margin: 10px;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
   .newlist {
     width: 100%;
     padding: 10px;
@@ -224,10 +363,10 @@ nav a:hover,
     text-align: center;
   }
 
-  .newlist form{
-    width: 100%;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+.newlist form{
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
