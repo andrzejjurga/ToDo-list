@@ -3,8 +3,6 @@
 ?>
 
 <div class="form">
-
-
     <div class="login-box">
         <h2>Sign up</h2>
         <form action="includes/signup.inc.php" method="post">
@@ -21,11 +19,12 @@
             <label>Username</label>
           </div>
           <div class="user-box">
-            <input type="password" name="password" required="">
+            <input type="password" name="password" id="password" required="">
             <label>Password</label>
+            <i class="far fa-eye" id="togglePassword"></i>
           </div>
           <div class="user-box">
-            <input type="password" name="password2" required="">
+            <input type="password" name="password2"  required="">
             <label>Repeat password</label>
           </div>
           <button type="submit" name="sumbit">

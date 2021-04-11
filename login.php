@@ -13,8 +13,9 @@
             <label>Username</label>
           </div>
           <div class="user-box">
-            <input type="password" name="password" required="">
+            <input type="password" name="password" id="password" required="">
             <label>Password</label>
+            <i class="far fa-eye" id="togglePassword"></i>
           </div>
           <button type="submit" name="sumbit">
               LOGIN

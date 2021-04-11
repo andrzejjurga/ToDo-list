@@ -108,7 +108,7 @@ function loginUser($conn, $login, $password)
     
     if(password_verify($password, $hashedPassword) === false)
     {
-        header('location: ../login.php?error='.$hashedPassword);
+        header('location: ../login.php?error=password');
     }
     else if(password_verify($password, $hashedPassword) === true)
     {
@@ -116,6 +116,12 @@ function loginUser($conn, $login, $password)
         $_SESSION["ID_user"] = $pwd['ID_user'];
         $_SESSION["user_surname"] = $pwd['surname'];
         $_SESSION["user_firstname"] = $pwd['firstname'];
+        if($pwd['admin']!=null)
+        {
+            header("location: ./index.admin.inc.php?error=none");
+            exit();
+        }
+
         header("location: ../index.php?error=none");
     }
 }

@@ -19,26 +19,12 @@ function fun()
     });
 
 }
-checkbox = document.querySelectorAll('input[type=checkbox]');
-checkbox.forEach(element => {
-    if(element.checked)
-    {
-        let closestElement = element.closest(".list-container");
-        let tasks = closestElement.querySelectorAll(".tasks");
-        tasks[0].style.display = "none";
-    }
-    else if(!element.checked)
-    {
-        let closestElement = element.closest(".list-container");
-        let tasks = closestElement.querySelectorAll(".tasks");
-        tasks[0].style.display = "block";
-    }
-    
-});
+
 var smallSize = false;
 
 window.addEventListener('resize', hamburger);
 window.addEventListener('DOMContentLoaded', hamburger);
+window.addEventListener('DOMContentLoaded', fun);
 
 
 function hamburger(){
@@ -99,3 +85,28 @@ function openNav() {
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
+
+  function high_contrast() {
+    let body = document.getElementsByTagName("body");
+    let h2 = document.getElementsByTagName("h2");
+    body[0].style.setProperty("color", "yellow", "important");
+    h2[0].style.setProperty("color", "yellow", "important");
+  }
+
+  function fontSize() {
+    let body = document.getElementsByTagName("body");
+    let h2 = document.getElementsByTagName("h2");
+    body[0].style.setProperty("font-size", "140%", "important");
+    h2[0].style.setProperty("font-size", "140%", "important");
+  }
+
+  const togglePassword = document.querySelector('#togglePassword');
+  const password = document.querySelector('#password');
+
+  togglePassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+});
